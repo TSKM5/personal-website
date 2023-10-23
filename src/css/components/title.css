@@ -1,0 +1,15 @@
+.base-title-container {
+    border-bottom: solid 1px black;
+    display: inline-block; 
+}
+
+.base-title-text {
+   font-family: 'Just Me Again Down Here'; 
+   font-size: xxx-large;
+}
+
+@media (max-width: 450px) {
+    .base-title-text{
+        font-size: xx-large;
+    }
+}

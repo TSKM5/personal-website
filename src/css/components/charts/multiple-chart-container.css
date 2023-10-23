@@ -1,0 +1,12 @@
+.multiple-chart-container {
+    display: flex;
+    flex-direction: column;
+    gap:30px
+}
+
+.multiple-chart-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px; 
+}

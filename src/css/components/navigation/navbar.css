@@ -1,0 +1,53 @@
+.navbar-base {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    height: 75px;
+    background-color: black;
+    width: 100%;
+    z-index: 100;
+}
+
+.navbar-base-feat {
+    display: flex;
+    background-color: #4C426F;
+    height: 10px;
+    width: 100%;
+}
+
+.navbar-base-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-grow: 1;
+    height: auto;
+    align-items: center;
+}
+
+.navbar-base-content-logo {
+    margin-left: 50px;
+}
+
+.navbar-base-content-menu-options {
+    display: grid;
+    grid-auto-flow: column; 
+    gap: 200px; 
+}
+
+.navbar-base-content-menu-options-text {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-base-content-icons {
+    margin-right: 50px;
+    display: grid;
+    grid-auto-flow: column; 
+    gap: 50px; 
+}
+
+@media (max-width: 1023px) {
+    .navbar-base-content-menu-options {
+        gap:100px;
+    }
+}

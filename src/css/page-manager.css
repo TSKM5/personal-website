@@ -1,0 +1,12 @@
+.base-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 30px;
+    padding-top: 100px;
+}
+
+.base-container {
+    max-width: 100vw!important;
+}

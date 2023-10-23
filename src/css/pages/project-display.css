@@ -1,0 +1,13 @@
+.project-display-container {
+    width:70%;
+}
+
+.project-display-container > * {
+    margin-top: 5px;
+}
+
+.project-display-button {
+    background-color: #4C426F;
+    color: white;
+    border: 0; 
+}

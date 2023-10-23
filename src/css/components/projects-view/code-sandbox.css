@@ -1,0 +1,10 @@
+.code-sandbox-container {
+    width:80%;
+    height:800px;
+}
+
+.code-sandbox-iframe {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}

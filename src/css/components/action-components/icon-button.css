@@ -1,0 +1,9 @@
+.icon-button-base {
+    width: 40px; 
+    height: 40px;
+    cursor: pointer;
+}
+
+.icon-button-base:active {
+    background-color: #353232;
+}

@@ -1,0 +1,21 @@
+.focused-image-container {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 50;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.focused-image {
+    max-width: 50%;
+    max-height: 50%;
+    display: flex;
+}

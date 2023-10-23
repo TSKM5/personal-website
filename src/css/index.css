@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Just+Me+Again+Down+Here&display=swap');
+* {
+  margin: 0;
+  font-family: 'Anonymous Pro';
+}
+.body {
+  max-width: 100vw!important;
+}
+.body-text {
+  background-color: none;
+  font-size: 1rem;
+}

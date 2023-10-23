@@ -1,0 +1,4 @@
+.colour-picker-widget-container {
+    z-index: 10;
+    position: absolute;
+}

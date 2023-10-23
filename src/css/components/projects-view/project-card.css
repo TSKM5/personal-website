@@ -1,0 +1,23 @@
+.project-card {
+    display: grid;
+    flex-direction: column;
+    height: 225px;
+    width:250px; 
+    border: solid 1px #A6A6A6;
+    box-shadow: 10px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    cursor: pointer;
+}
+
+.project-card-image {
+    display: flex;
+    flex-direction: column;
+    max-height: 180px;
+    max-width: 150px !important;
+    justify-self: center;
+}
+
+.project-card-text {
+    text-align: center;
+    margin:5px;
+}

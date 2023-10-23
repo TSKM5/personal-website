@@ -1,0 +1,12 @@
+.websocket-demo-container {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    align-items: center;
+}
+
+@media (max-width: 800px) {
+    .websocket-demo-container {
+        flex-direction: column;
+    }
+}
