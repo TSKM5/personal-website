@@ -23,3 +23,23 @@ export async function postContactForm(contactForm:ContactForm):Promise<boolean> 
         return false; 
     }
 }
+
+export async function callDownloadApi(src: string) {
+    const response = await fetch(src);
+    
+    if (!response.ok) {
+        throw new Error("Failed to fetch.");
+    }
+
+    const blob = await response.blob();
+    const urlBlob = window.URL.createObjectURL(blob);
+    
+    const link = document.createElement('a');
+    link.href = urlBlob;
+    link.download = 'File Organiser.exe';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    window.URL.revokeObjectURL(urlBlob);
+}

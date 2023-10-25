@@ -9,6 +9,7 @@ import { WebsocketDemo } from '../components/projects-view/websocket-demo/Websoc
 import CodeSandbox from '../components/projects-view/CodeSandbox';
 import UrlDisplay from '../components/projects-view/UrlDisplay';
 import { AnimationDemo } from '../components/projects-view/animation-demo/AnimationDemo';
+import { callDownloadApi } from '../services/project-api/FolioApi';
 
 export function ProjectDisplay(props: { project: Project }) {
   const { project } = props;
@@ -20,7 +21,7 @@ export function ProjectDisplay(props: { project: Project }) {
         case 'codeSandbox':
           return <CodeSandbox key={index} src={e.src}/> 
         case 'downloadAssetButton':
-          return <Button key={index} classOverride='project-display-button' text={'Download'} callback={() => {}}/> 
+          return <Button key={index} classOverride='project-display-button' text={'Download'} callback={() => {callDownloadApi(e.src)}}/> 
         case 'heading':
           return <Title key={index} text={project.title}/>;
         case 'mobileIFrame':

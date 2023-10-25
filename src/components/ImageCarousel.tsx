@@ -1,8 +1,6 @@
 import './../css/components/image-carousel.css';
 import React, { useEffect, useState } from 'react';
 import IconButton from './action-components/IconButton';
-import { sanityImageBuilder } from '../services/cms-service/SanityService';
-import { ImageItem } from '../utils/types/sanity-types/SanityImageTypes';
 import FocusedImage from './FocusedImage';
 
 const ImageCarousel = (props: { images: string[] }) => {
@@ -35,13 +33,8 @@ const ImageCarousel = (props: { images: string[] }) => {
   return (
     <div className='image-carousel-container'>
       <IconButton classOverride='image-carousel-button-left' asset={require('./../assets/arrow-up.svg')} callback={handlePrevious} />
-      <div className="image-carousel-prev" onClick={handlePrevious}>
-        <img src={images[currentIndex === 0 ? images.length - 1 : currentIndex - 1]} alt="Previous Image" />
-      </div>
       <div className='image-carousel-content-container'>
-        <div className='image-carousel-content-image-container'>
           <img className='image-carousel-content-image' src={currentImage} alt="carousel" onClick={() => onImageClick()} />
-        </div>
         <div className='image-carousel-tracker-container'>
           {
             Array.from({ length: images.length }).map((i, index) => (
@@ -49,9 +42,6 @@ const ImageCarousel = (props: { images: string[] }) => {
             ))
           }
         </div>
-      </div>
-      <div className="image-carousel-next" onClick={handleNext}>
-        <img src={images[currentIndex === images.length - 1 ? 0 : currentIndex + 1]} alt="Next Image" />
       </div>
       <IconButton classOverride='image-carousel-button-right' asset={require('./../assets/arrow-up.svg')} callback={handleNext} />
       {

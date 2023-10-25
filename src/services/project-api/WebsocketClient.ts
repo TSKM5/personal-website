@@ -1,6 +1,7 @@
 import { WS_ENDPOINT } from "../../config/Endpoints";
 
 export class WebSocketClient {
+  public hasError: boolean = false;
   private endpoint: string = WS_ENDPOINT;
   private ws: WebSocket | null = null;
   private wsStatus: boolean = false;
@@ -18,7 +19,8 @@ export class WebSocketClient {
     return !this.ws && this.wsStatus;
   }
 
-  connect() {
+  connect(needsSession?:boolean) {
+    this.hasError = false;
     if (this.isConnected()) {
       return;
     }
@@ -28,12 +30,16 @@ export class WebSocketClient {
     } catch (error) {
       this.wsStatus = false;
       this.statusCallback(false);
+      this.hasError = true;
       return;
     }
 
     this.ws.onopen = () => {
       this.wsStatus = true;
       this.statusCallback(true);
+      if(needsSession) {
+        this.createSession();
+      }
     };
 
     this.ws.onmessage = (event) => {
@@ -48,6 +54,10 @@ export class WebSocketClient {
         this.sessionCallback(response.success);
       }
     };
+
+    this.ws.onclose = () => {
+      this.close();
+    }
   }
 
   public getWsStatus():boolean{
@@ -89,6 +99,8 @@ export class WebSocketClient {
 
   public close() {
     if (this.ws) {
+      this.wsStatus = false;
+      this.statusCallback(false);
       this.ws.close();
     }
   }
@@ -97,7 +109,12 @@ export class WebSocketClient {
     const msg = {
       "mode":"create", 
     }
-    this.send(JSON.stringify(msg))
+    if(this.wsStatus) {
+      this.send(JSON.stringify(msg))
+    } else {
+      this.connect(true);
+    }
+
   }
 }
 

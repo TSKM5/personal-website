@@ -20,11 +20,7 @@ export default function WsPrototypeChatbox() {
     useEffect(() => {
         if (result === false) {
             setLoading(false);
-        }
-    }, [result]);
-    useEffect(() => {
-        if(result === false){
-            setLoading(false);
+            setIsSession(false);
         }
     }, [result]);
 
@@ -47,8 +43,8 @@ export default function WsPrototypeChatbox() {
         setLoading(false);
     }
 
-    if(result === false){
-        return <InlineMessage text={"CONTENT_NOT_FOUND_ERROR_TEXT"} /> 
+    if(ws.hasError){
+        return <InlineMessage text={"Timeout"} /> 
     }
 
     return (
