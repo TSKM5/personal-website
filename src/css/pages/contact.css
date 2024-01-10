@@ -30,12 +30,10 @@
 
 .contact-form-button-submit {
     background-color: #4C426F;
-    border-color: #4C426F;
     color: white;
 }
 
 .contact-form-input-error {
-    /* height: 25px; */
     color: red;
 }
 

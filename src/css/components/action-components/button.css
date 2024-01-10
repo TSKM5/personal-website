@@ -5,6 +5,15 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    border: solid 1px black;
+    border-radius: 3px;
+    overflow: hidden;
+    color: black;
+}
+
+.button-base:hover {
+    background-color: #808080;
+    color: white;
 }
 
 .button-base:active {

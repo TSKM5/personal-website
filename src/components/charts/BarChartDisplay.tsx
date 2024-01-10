@@ -1,7 +1,6 @@
 import React from "react";
 import { BarChart, XAxis, YAxis, Tooltip, Legend, Bar, Cell, XAxisProps, YAxisProps } from "recharts";
-import { ChartData } from "../../utils/types/ChartData";
-import { Dimensions } from "../../utils/types/GeneralTypes";
+import { ChartData, Dimensions } from "../../utils/types/GeneralTypes";
 
 export default function BarChartDisplay(props:{
   isHorizontal:boolean, 

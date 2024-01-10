@@ -5,7 +5,7 @@ export function TitleDisplayButton(props:{classOverride?:string, text:string, in
     const {classOverride, text, infoText, callback} = props; 
     return (
         <div className={'title-display-button-base ' + classOverride} onClick={callback}>
-            <Title textClassOverride='title-display-button-text' containerClassOverride='title-display-button-text-container' text={text}/>
+            <Title textClassOverride='title-display-button-text' text={text}/>
             <p className='title-display-button-text'>{infoText}</p> 
         </div>
     )

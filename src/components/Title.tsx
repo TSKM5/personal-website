@@ -1,9 +1,6 @@
 import './../css/components/title.css'
-export default function Title(props:{containerClassOverride?:string, textClassOverride?:string, text:string}) {
-    const {containerClassOverride, textClassOverride, text} = props; 
-    return (
-        <div className={`base-title-container ${containerClassOverride}`}>
-            <p className={`base-title-text ${textClassOverride}`}>{text}</p>
-        </div>
-    )
+export default function Title(props:{textClassOverride?:string, text:string}) {
+    const {textClassOverride, text} = props; 
+
+    return <h1 className={`base-title-text ${textClassOverride}`}>{text}</h1>
 }

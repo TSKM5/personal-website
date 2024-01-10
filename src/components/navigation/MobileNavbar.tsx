@@ -3,7 +3,7 @@ import IconButton from "../action-components/IconButton";
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { externalNavigate, useNavigationHelper } from '../../utils/navigation';
-import { DISCORD_URL, GITHUB_URL } from '../../config/Endpoints';
+import { LINKEDIN_URL, GITHUB_URL } from '../../utils/constants/Endpoints';
 
 export default function MobileNavbar() {
     const [menuOpen, setMenuOpen] = useState<boolean>(false); 
@@ -60,8 +60,8 @@ export default function MobileNavbar() {
                             <a href="/app/contact" className={`navbar-mobile-menu-option-text ${isActive('/app/contact')}`}>.contact-me</a>
                         </div>
                         <div className="navbar-mobile-menu-option-icons-container">
-                            <IconButton asset={require('./../../assets/branding/discord/discord-white.svg')} callback={() => externalNavigate(DISCORD_URL)}/> 
-                            <IconButton asset={require('./../../assets/branding/github/github-white.svg')} callback={() => externalNavigate(GITHUB_URL)}/>
+                            <IconButton asset={{default:'/icons/linkedin/In-white.png'}} callback={() => externalNavigate(LINKEDIN_URL)}/> 
+                            <IconButton asset={{default:'/icons/github/github-white.png'}} callback={() => externalNavigate(GITHUB_URL)}/>
                         </div>
                         <IconButton
                             classOverride={`mobile-navbar-menu-icon menu-modal-icon`}

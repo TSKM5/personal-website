@@ -38,7 +38,7 @@
 
 @media (max-width: 1023px) {
     .about-container {
-        width:80%;
+        width:90%;
         gap:30px;
     }
     .about-content-container{

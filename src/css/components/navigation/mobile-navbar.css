@@ -137,6 +137,10 @@
     border-bottom: 1px solid white;
     font-size: x-large;
     text-decoration: none;
+    &:hover {
+        text-decoration: none;
+        color: #808080;
+    }
 }
 .mobile-active-menu-option{
     opacity: 0.3;

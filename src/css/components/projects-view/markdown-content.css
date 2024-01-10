@@ -1,0 +1,31 @@
+
+.markdown-content-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px
+}
+
+p:has(> .markdown-img) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.markdown-img {
+    width: 50%;
+}
+
+
+@media (max-width: 450px) {
+    .markdown-content-container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 750px) {
+    .markdown-img {
+        width: 80%;
+    }
+}

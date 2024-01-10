@@ -1,14 +1,16 @@
 import './../css/pages/about.css'
 import Title from "../components/Title";
-import { AboutMePageContent, AboutMySkillsType, AboutThisWebsiteType } from '../utils/types/page-types/AboutPageTypes';
-import { DataSegment, useAboutPageContext } from '../utils/context/DataServiceContext';
 import LoadingSpinner from '../components/LoadingSpinner';
 import InlineMessage, { CONTENT_NOT_FOUND_ERROR_TEXT } from '../components/InlineMessage';
 import MultipleChartContainer from '../components/charts/MultipleChartContainer';
 import { Helmet } from 'react-helmet';
+import { CmsDataContext, DataSegment } from '../services/context/DataServiceContext';
+import { useContext } from 'react';
+import { AboutMePageContent, AboutMySkillsContent, AboutThisWebsiteContent } from '../utils/types/CoreTypesMapping';
 
 export default function About() {
-    const aboutContentReturn: DataSegment<AboutMePageContent | null> = useAboutPageContext();
+    const cmsContext = useContext(CmsDataContext);
+    const aboutContentReturn: DataSegment<AboutMePageContent> = cmsContext?.getAboutPageData() ?? { isLoading: true, data: null, isError: false };
 
     if (!aboutContentReturn || !aboutContentReturn.data || aboutContentReturn.isLoading) {
         return <LoadingSpinner />
@@ -52,7 +54,7 @@ function AboutMyInterests(props:{text:string}) {
     )
 }
 
-function AboutMySkills(props:{aboutSkills:AboutMySkillsType}) {
+function AboutMySkills(props:{aboutSkills:AboutMySkillsContent}) {
     const {aboutSkills} = props; 
 
     return (
@@ -67,7 +69,7 @@ function AboutMySkills(props:{aboutSkills:AboutMySkillsType}) {
     )
 }
 
-function AboutThisWebsite(props:{aboutThisWebsite:AboutThisWebsiteType}) {
+function AboutThisWebsite(props:{aboutThisWebsite:AboutThisWebsiteContent}) {
     const { aboutThisWebsite } = props;
     return (
         <div className="about-content-container">

@@ -4,16 +4,16 @@ import UserInput from '../components/action-components/UserInput';
 import TextDisplay from '../components/TextDisplay';
 import Button from '../components/action-components/Button';
 import IconButton from '../components/action-components/IconButton';
-import { DataSegment, useContactPageContext } from '../utils/context/DataServiceContext';
-import { ContactPageTypes } from '../utils/types/page-types/ContactPageTypes';
 import InlineMessage, { CONTENT_NOT_FOUND_ERROR_TEXT } from '../components/InlineMessage';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react';
 import { postContactForm } from '../services/project-api/FolioApi';
-import { DISCORD_URL, GITHUB_URL } from '../config/Endpoints';
+import { LINKEDIN_URL, GITHUB_URL } from '../utils/constants/Endpoints';
 import { isValidEmail, isValidName } from '../utils/helperFunctions';
 import { externalNavigate } from '../utils/navigation';
 import { Helmet } from 'react-helmet';
+import { CmsDataContext, DataSegment } from '../services/context/DataServiceContext';
+import { ContactPageContent } from '../utils/types/CoreTypesMapping';
 
 enum InputStatus {
     IDLE = "IDLE",
@@ -34,7 +34,8 @@ enum APIStatus {
 }
 
 export default function Contact() {
-    const contactContentReturn: DataSegment<ContactPageTypes | null> = useContactPageContext();
+    const cmsContext = useContext(CmsDataContext);
+    const contactContentReturn: DataSegment<ContactPageContent> = cmsContext?.getContactPageData() ?? { isLoading: true, data: null, isError: false };
     const nameInputRef = useRef<HTMLInputElement>(null);
     const [nameValue, setNameValue] = useState<InputState>({status: InputStatus.IDLE, value:''});
     const emailInputRef = useRef<HTMLInputElement>(null);
@@ -161,8 +162,8 @@ export default function Contact() {
                 ) : <></>
             }
             <div className='contact-form-button-container'>
-                <IconButton asset={require('./../assets/branding/discord/discord-black.svg')} callback={() => externalNavigate(DISCORD_URL)} />
-                <IconButton asset={require('./../assets/branding/github/github-black.svg')} callback={() => externalNavigate(GITHUB_URL)} />
+                <IconButton asset={{default:'/icons/linkedin/In-Blue.png'}} callback={() => externalNavigate(LINKEDIN_URL)} />
+                <IconButton asset={{default:'/icons/github/github-black.png'}} callback={() => externalNavigate(GITHUB_URL)} />
             </div>
         </>
     )

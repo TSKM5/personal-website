@@ -1,4 +1,4 @@
-import { WS_ENDPOINT } from "../../config/Endpoints";
+import { WS_ENDPOINT } from "../../utils/constants/Endpoints";
 
 export class WebSocketClient {
   public hasError: boolean = false;

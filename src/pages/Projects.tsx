@@ -2,17 +2,17 @@ import { useContext, useEffect, useState } from "react";
 import Title from "../components/Title";
 import FilterManager from "../components/projects-view/FilterManager";
 import ProjectsGrid from "../components/projects-view/ProjectsGrid";
-import { Project } from "../utils/types/page-types/ProjectTypes";
-import { DataSegment, useProjectContext } from "../utils/context/DataServiceContext";
 import InlineMessage, { CONTENT_NOT_FOUND_ERROR_TEXT } from "../components/InlineMessage";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { AnimationDemo } from "../components/projects-view/animation-demo/AnimationDemo";
 import { Helmet } from "react-helmet";
+import { CmsDataContext, DataSegment } from "../services/context/DataServiceContext";
+import { ProjectDetails } from "../utils/types/CoreTypesMapping";
 
 export default function Projects() {
-    const projectsReturn:DataSegment<Project[]> = useProjectContext(); 
-    const [allProjects, setAllProjects] = useState<Project[]>(projectsReturn.data ? [...projectsReturn.data]: []);
-    const [projectsShown, setProjectsShown] = useState<Project[]>([]);
+    const cmsContext = useContext(CmsDataContext);
+    const projectsReturn:DataSegment<ProjectDetails[]> = cmsContext?.getProjectDetails() ?? { isLoading: true, data: null, isError: false };
+    const [allProjects, setAllProjects] = useState<ProjectDetails[]>(projectsReturn.data ? [...projectsReturn.data]: []);
+    const [projectsShown, setProjectsShown] = useState<ProjectDetails[]>([]);
     const [tags, setTags] = useState<string[]>([]);
     const [filteredTags, setFilteredTags] = useState<string[]>([]);
 

@@ -1,34 +1,50 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Route, Routes } from "react-router-dom";
-import PageManager from "./PageManager";
+import PageManager from "./pages/PageManager";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import { Landing } from "./pages/Landing";
-import { ProjectDisplay } from "./pages/ProjectDisplay";
+import { ProjectPage } from "./pages/ProjectPage";
 import Projects from "./pages/Projects";
-import { Project } from "./utils/types/page-types/ProjectTypes";
-import { DataSegment, useProjectContext } from "./utils/context/DataServiceContext";
 import { NotFound } from "./pages/NotFound";
 import LoadingSpinner from "./components/LoadingSpinner";
 import InlineMessage from "./components/InlineMessage";
+import { CmsDataContext } from "./services/context/DataServiceContext";
+import { ProjectDetails } from "./utils/types/CoreTypesMapping";
+import { ABOUT_ROUTE, APP_ROUTE, CONTACT_ROUTE, HOME_ROUTE, PROJECTS_ROUTE } from "./utils/constants/Routes";
 
 
 export default function App() {
-    const projectsReturn: DataSegment<Project[]> | null = useProjectContext();
-    const [allProjects, setAllProjects] = useState<Project[]>([]);
-    const [loading, setLoading] = useState(true); 
-
+    const cmsContext = useContext(CmsDataContext);
+    const [allProjects, setAllProjects] = useState<ProjectDetails[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
-        if (!projectsReturn.isLoading && !projectsReturn.isError && projectsReturn.data) {
-            setAllProjects(projectsReturn.data);
-            setLoading(false); 
+        async function fetchProjects() {
+            const projectsReturn = cmsContext?.getProjectDetails();
+            if (projectsReturn) {
+                if (!projectsReturn.isLoading && !projectsReturn.isError && projectsReturn.data) {
+                    setAllProjects(projectsReturn.data);
+                    setLoading(false);
+                } else if (projectsReturn.isError) {
+                    setError(true);
+                }
+            }
         }
-        else if (projectsReturn.isError) {
-            <InlineMessage text="Error loading content." />
-        }
-    }, [projectsReturn]);
+
+        if(cmsContext)fetchProjects();
+    }, [cmsContext]);
+
+    if (error) {
+        return <InlineMessage text="Error loading content." />;
+    }
+
+    if (loading) {
+        return <LoadingSpinner />;
+    }
+
 
     return (
         loading ? (
@@ -36,16 +52,16 @@ export default function App() {
         ) : (
             <Routes>
                 <Route path="/" element={<Landing />} />
-                <Route path="/app" element={<PageManager />}>
-                    <Route path="/app/home" element={<Home />} />
-                    <Route path="/app/about" element={<About />} />
-                    <Route path="/app/projects" element={<Projects />} />
-                    <Route path="/app/contact" element={<Contact />} />
+                <Route path={APP_ROUTE} element={<PageManager />}>
+                    <Route path={APP_ROUTE + HOME_ROUTE} element={<Home />} />
+                    <Route path={APP_ROUTE + ABOUT_ROUTE} element={<About />} />
+                    <Route path={APP_ROUTE + PROJECTS_ROUTE} element={<Projects />} />
+                    <Route path={APP_ROUTE + CONTACT_ROUTE}element={<Contact />} />
                 </Route>
-                <Route path="/projects" element={<PageManager />}>
+                <Route path={PROJECTS_ROUTE} element={<PageManager />}>
                     {
                         allProjects.map((p, index) => (
-                            <Route key={index} path={`/projects/${p.path}`} element={<ProjectDisplay project={p} />} />
+                            <Route key={index} path={`${PROJECTS_ROUTE}/${p.path}`} element={<ProjectPage project={p} />} />
                         ))
                     }
                 </Route>

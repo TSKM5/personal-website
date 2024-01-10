@@ -2,15 +2,16 @@ import './../css/pages/home.css';
 import {StarryBackground, ZigZagBackground} from "react-animated-background-lib";
 import { TitleDisplayButton } from "../components/action-components/TitleDisplayButton";
 import { useNavigationHelper } from '../utils/navigation';
-import { HomePageTypes } from '../utils/types/page-types/HomePageTypes';
-import { DataSegment, useHomePageContext } from '../utils/context/DataServiceContext';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { Helmet } from 'react-helmet';
+import { useContext } from 'react';
+import { CmsDataContext, DataSegment } from '../services/context/DataServiceContext';
+import { HomePageContent } from '../utils/types/CoreTypesMapping';
 
 export default function Home() {
     const { navigateTo } = useNavigationHelper();
-    const homeContentReturn: DataSegment<HomePageTypes | null> = useHomePageContext();
-    
+    const cmsContext = useContext(CmsDataContext);
+    const homeContentReturn: DataSegment<HomePageContent> = cmsContext?.getHomePageData() ?? { isLoading: true, data: null, isError: false };
     
     return (
         <div className='home-container'>

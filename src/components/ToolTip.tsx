@@ -4,6 +4,8 @@ import './../css/components/tool-tip.css'
 export default function ToolTip(props:{text:string, classOverride?:string}) {
     const { text, classOverride } = props;
     const [coords, setCoords] = useState<{x:number, y:number}>({x:0, y:0});
+    const [isVisible, setIsVisible] = useState(false);
+    const delay = 250;
 
     const updateCoords = (e:MouseEvent) => {
         const tooltip = document.querySelector('.tool-tip-container'); 
@@ -39,14 +41,17 @@ export default function ToolTip(props:{text:string, classOverride?:string}) {
 
     useEffect(() => {
         window.addEventListener('mousemove', updateCoords);
+        const timeoutId = setTimeout(() => setIsVisible(true), delay);
+
         return () => {
             window.removeEventListener('mousemove', updateCoords);
+            clearTimeout(timeoutId);
         }
     }, []); 
 
-    return (
-        <div className={`tool-tip-container ${classOverride}`} style={{left:`${coords.x}px`, top:`${coords.y}px`}}>
+    return isVisible ? (
+        <div className={`tool-tip-container ${classOverride}`} style={{ left: `${coords.x}px`, top: `${coords.y}px` }}>
             <p>{text}</p>
         </div>
-    ) 
+    ) : <></>;
 }

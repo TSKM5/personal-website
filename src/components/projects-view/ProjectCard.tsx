@@ -1,11 +1,11 @@
 import './../../css/components/projects-view/project-card.css';
 import TextDisplay from "../TextDisplay";
 import { useNavigationHelper } from '../../utils/navigation';
-import { Project } from '../../utils/types/page-types/ProjectTypes';
 import { useState } from 'react';
 import ToolTip from '../ToolTip';
+import { ProjectDetails } from '../../utils/types/CoreTypesMapping';
 
-export default function ProjectCard(props:{project:Project}) {
+export default function ProjectCard(props:{project:ProjectDetails}) {
     const { project } = props; 
     const { navigateTo } = useNavigationHelper();
     const [mouseHover, setMouseHover] = useState<boolean>(false);

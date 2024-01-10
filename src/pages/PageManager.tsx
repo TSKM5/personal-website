@@ -1,6 +1,6 @@
-import './css/page-manager.css'
+import './../css/pages/page-manager.css'
 import { Outlet } from 'react-router-dom';
-import { Navbar } from './components/navigation/Navbar';
+import { Navbar } from '../components/navigation/Navbar';
 
 export default function PageManager() {
     return (

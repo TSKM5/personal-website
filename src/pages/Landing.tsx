@@ -2,13 +2,15 @@ import { StarryBackground } from 'react-animated-background-lib';
 import './../css/pages/landing.css';
 import Button from '../components/action-components/Button';
 import { useNavigate } from "react-router-dom";
-import { DataSegment, useLandingPageContext } from '../utils/context/DataServiceContext';
-import { LandingPageTypes } from '../utils/types/page-types/LandingPageTypes';
 import { Helmet } from 'react-helmet';
+import { useContext } from 'react';
+import { CmsDataContext, DataSegment } from '../services/context/DataServiceContext';
+import { LandingPageContent } from '../utils/types/CoreTypesMapping';
 
 export function Landing() {
     const navigate = useNavigate(); 
-    const landingContentReturn: DataSegment<LandingPageTypes | null> = useLandingPageContext();
+    const cmsContext = useContext(CmsDataContext);
+    const landingContentReturn: DataSegment<LandingPageContent> = cmsContext?.getLandingPageData() ?? { isLoading: true, data: null, isError: false };
 
     return (
         <main className="landing-main">

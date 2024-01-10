@@ -1,16 +1,14 @@
-import { AboutMePageContent } from "../../utils/types/page-types/AboutPageTypes";
-import { ContactPageTypes } from "../../utils/types/page-types/ContactPageTypes";
-import { HomePageTypes } from "../../utils/types/page-types/HomePageTypes";
-import { LandingPageTypes } from "../../utils/types/page-types/LandingPageTypes";
-import { Project } from "../../utils/types/page-types/ProjectTypes";
+import { AboutMePageContent, ContactPageContent, HomePageContent, LandingPageContent, ProjectDetails, ProjectPageContents } from "../../utils/types/CoreTypesMapping";
+
 
 export abstract class AbstractCmsService {
     constructor(){
     }
 
-    abstract getProjects(): Promise<Project[]>;
-    abstract getAbout(): Promise<AboutMePageContent | null>;
-    abstract getLanding(): Promise<LandingPageTypes | null>
-    abstract getHome(): Promise<HomePageTypes | null>
-    abstract getContact(): Promise<ContactPageTypes | null>
+    abstract getProjectDetails(): Promise<ProjectDetails[]>;
+    abstract getProject(_id:string): Promise<ProjectPageContents[]>;
+    abstract getAbout(): Promise<AboutMePageContent>;
+    abstract getLanding(): Promise<LandingPageContent>
+    abstract getHome(): Promise<HomePageContent>
+    abstract getContact(): Promise<ContactPageContent>
 }

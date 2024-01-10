@@ -1,0 +1,123 @@
+.image-carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-carousel-button-left, .image-carousel-button-right {
+    display: flex;
+    align-self: center;
+}
+
+.image-carousel-button-left {
+    transform: rotate(-90deg) !important;
+}
+
+.image-carousel-button-right {
+    transform: rotate(90deg) !important;
+}
+
+.image-carousel-button-left:active, .image-carousel-button-right:active {
+    opacity: 0.5;
+}
+
+.image-carousel-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-carousel-image-container {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 450px; 
+    height: 450px;
+    background-color: rgba(0,0,0,0.025);
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5) inset;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.5);
+    padding: 30px; 
+
+}
+
+.image-carousel-content-image {
+    max-height: 100%; 
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+
+.image-carousel-content-error-image-container {
+    max-height: 80%; 
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 10px rgba(76, 66, 111,0.5);
+    background-color: rgba(76, 66, 111,0.7);
+    border-radius: 10px;
+    padding: 30px; 
+    gap: 15px;
+    box-sizing: border-box;
+}
+
+.image-carousel-content-error-image {
+    max-height: 50%;
+    max-width: 50%;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.image-carousel-content-error-text {
+    text-align: center;
+}
+
+.image-carousel-tracker-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.image-carousel-tracker-unselected, .image-carousel-tracker-selected {
+    height: 10px;
+    width: 10px; 
+    border-radius: 50%;
+    margin: 2px;
+}
+
+.image-carousel-tracker-unselected {
+    background-color: rgb(221, 221, 221);
+}
+
+.image-carousel-tracker-selected {
+    background-color: #4C426F;
+}
+
+@media (max-width: 1200px) {
+    .image-carousel-image-container  {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 475px) {
+    .image-carousel-image-container  {
+        max-width: 200px;
+        max-height: 250px;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 12px;
+    }
+    .image-carousel-content-error-text {
+        font-size: 12px;
+    }
+}

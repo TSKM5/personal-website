@@ -1,5 +1,5 @@
 import { PieChart, Pie, Tooltip, Cell, LabelList, Legend } from "recharts";
-import { ChartData } from "../../utils/types/ChartData";
+import { ChartData } from "../../utils/types/GeneralTypes";
 
 export default function PieChartDisplay(props:{chartData:ChartData[], colours?:string[]}) {
     const { chartData, colours } = props;

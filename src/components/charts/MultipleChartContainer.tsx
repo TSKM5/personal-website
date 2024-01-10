@@ -1,11 +1,10 @@
 import './../../css/components/charts/multiple-chart-container.css'
 import { useEffect, useState } from "react";
-import { ChartData } from "../../utils/types/ChartData";
 import BarChartDisplay from "./BarChartDisplay";
 import PieChartDisplay from "./PieChartDisplay";
 import Button from "../action-components/Button";
 import { getDimensionsByClassName } from '../../utils/helperFunctions';
-import { Dimensions } from '../../utils/types/GeneralTypes';
+import { ChartData, Dimensions } from '../../utils/types/GeneralTypes';
 
 
 export default function MultipleChartContainer(props:{chartData:ChartData[], startWithBar:boolean, barTicks?:number, matchClassForDimensions?:string}) {

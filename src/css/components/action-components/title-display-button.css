@@ -10,16 +10,30 @@
     cursor: pointer;
     padding: 0px 0px 20px 20px;
 }
+
+.title-display-button-base:hover {
+    background-color: rgba(76, 66, 111, 1);
+}
 .title-display-button-text {
     color: white;
 }
-.title-display-button-text-container {
-    border-color: white;
+
+
+@media (max-width: 700px) {
+    .title-display-button-base {
+        width: 80%;
+        height: 150px;
+    }
 }
 
-@media (max-width: 450px) {
+@media (max-height: 700px) {
     .title-display-button-base {
-        width: 300px;
-        height: 150px;
+        width: 80%;
+        height: 120px;
+    }
+    .title-display-button-text {
+        color: white;
+        line-height: 20px;
+        margin-bottom: 5px;
     }
 }

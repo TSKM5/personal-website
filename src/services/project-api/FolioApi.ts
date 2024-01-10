@@ -1,5 +1,11 @@
-import { FOLIO_ENDPOINT } from "../../config/Endpoints";
-import { ContactForm } from "../../utils/types/FolioApiTypes";
+import { EXE_DOWNLOAD, FOLIO_ENDPOINT } from "../../utils/constants/Endpoints";
+
+type ContactForm = {
+    name: string;
+    email: string;
+    message: string;
+};
+
 
 export async function postContactForm(contactForm:ContactForm):Promise<boolean> {
     try {
@@ -24,8 +30,15 @@ export async function postContactForm(contactForm:ContactForm):Promise<boolean> 
     }
 }
 
-export async function callDownloadApi(src: string) {
-    const response = await fetch(src);
+export async function callDownloadApi(filename: string) {
+    const reqBody = {filename: filename}
+    const response = await fetch(EXE_DOWNLOAD, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reqBody) 
+    });
     
     if (!response.ok) {
         throw new Error("Failed to fetch.");
@@ -36,7 +49,7 @@ export async function callDownloadApi(src: string) {
     
     const link = document.createElement('a');
     link.href = urlBlob;
-    link.download = 'File Organiser.exe';
+    link.download = filename;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
